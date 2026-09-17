@@ -1,0 +1,21 @@
+{
+  "codexMembers": [
+    {
+      "name": "Gilmore D'Silva",
+      "role": "Technical Head",
+      "file": "gilmore-dsilva.html"
+    }
+  ],
+  "participants": [
+    {
+      "name": "Rahul Sharma",
+      "role": "Participant",
+      "file": "rahul-sharma.html"
+    },
+    {
+      "name": "Priya Patel",
+      "role": "Participant",
+      "file": "priya-patel.html"
+    }
+  ]
+}
