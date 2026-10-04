@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Demonstration — CodeX</title>
+  <meta name="description" content="A visual guide to the Git and GitHub commands used in the CodeX workshop." />
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+
+  <div class="fx-scanlines" aria-hidden="true"></div>
+  <div class="fx-grid" aria-hidden="true"></div>
+
+  <div class="site is-visible demo-page">
+
+    <header class="header">
+      <p class="header__meta"><span class="dot"></span> guided demonstration</p>
+      <div class="header__tools">
+        <a class="header__link" href="index.html">Workshop home</a>
+        <a class="logo" href="index.html" aria-label="CodeX home">
+          Code<span class="logo__x">X</span>
+        </a>
+      </div>
+    </header>
+
+    <main>
+      <section class="demo-hero">
+        <p class="hero__kicker">CodeX / command reference</p>
+        <h1 class="student-head__name">Demonstration</h1>
+        <p class="demo-hero__lead">A small map of the GitHub workflow: copy a project, record your work, share it, and bring changes back together.</p>
+      </section>
+
+      <section class="demo-section" aria-labelledby="commands-title">
+        <div class="roster__head">
+          <h2 class="roster__title" id="commands-title">The command line</h2>
+          <p class="roster__count">01 / 03</p>
+        </div>
+        <div class="command-grid">
+          <article class="command-card">
+            <span class="command-card__number">01</span>
+            <h3>Clone the repository</h3>
+            <pre><code>git clone https://github.com/<br>  username/repository.git</code></pre>
+            <p>Downloads the repository and its history to your computer. Run this once when you first join a project.</p>
+          </article>
+          <article class="command-card">
+            <span class="command-card__number">02</span>
+            <h3>Stage your changes</h3>
+            <pre><code>git add .</code></pre>
+            <p>Places all changed files into the next snapshot. Check what is staged with <code>git status</code>.</p>
+          </article>
+          <article class="command-card">
+            <span class="command-card__number">03</span>
+            <h3>Save a snapshot</h3>
+            <pre><code>git commit -m "Describe<br>  the change"</code></pre>
+            <p>Records the staged snapshot in your local history with a message your team can understand.</p>
+          </article>
+          <article class="command-card">
+            <span class="command-card__number">04</span>
+            <h3>Send it to GitHub</h3>
+            <pre><code>git push origin main</code></pre>
+            <p>Uploads your local commits to the remote repository. The remote branch now has your work.</p>
+          </article>
+          <article class="command-card">
+            <span class="command-card__number">05</span>
+            <h3>Bring work down</h3>
+            <pre><code>git pull origin main</code></pre>
+            <p>Fetches remote commits and integrates them into your current branch. Pull before you start work.</p>
+          </article>
+          <article class="command-card command-card--accent">
+            <span class="command-card__number">06</span>
+            <h3>Check your state</h3>
+            <pre><code>git status</code></pre>
+            <p>Shows your current branch and which files are modified, staged, or ready to commit.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="demo-section" aria-labelledby="branches-title">
+        <div class="roster__head">
+          <h2 class="roster__title" id="branches-title">Branches are parallel timelines</h2>
+          <p class="roster__count">02 / 03</p>
+        </div>
+        <div class="diagram-panel">
+          <div class="diagram-copy">
+            <p class="diagram-label">A branch is a movable pointer to a line of commits.</p>
+            <p><strong>main</strong> stays ready and stable. A feature branch gives you a safe place to work. When the feature is complete, the histories can be merged.</p>
+            <div class="legend" aria-label="Branch legend">
+              <span><i class="legend__dot legend__dot--main"></i> main</span>
+              <span><i class="legend__dot legend__dot--feature"></i> feature</span>
+              <span><i class="legend__dot legend__dot--merge"></i> merge commit</span>
+            </div>
+          </div>
+          <div class="branch-graph" role="img" aria-label="A main branch with commits A, B, and merge M. A feature branch starts at B, adds commits C and D, then merges back into main.">
+            <svg viewBox="0 0 620 270" aria-hidden="true" focusable="false">
+              <path class="graph-line graph-line--main" d="M70 195 H550" />
+              <path class="graph-line graph-line--feature" d="M230 195 C270 195 278 75 330 75 H420 C468 75 472 195 510 195" />
+              <circle class="graph-node graph-node--main" cx="110" cy="195" r="13" />
+              <circle class="graph-node graph-node--main" cx="230" cy="195" r="13" />
+              <circle class="graph-node graph-node--feature" cx="330" cy="75" r="13" />
+              <circle class="graph-node graph-node--feature" cx="420" cy="75" r="13" />
+              <circle class="graph-node graph-node--merge" cx="510" cy="195" r="15" />
+              <text x="110" y="238">A</text>
+              <text x="230" y="238">B</text>
+              <text x="330" y="45">C</text>
+              <text x="420" y="45">D</text>
+              <text x="510" y="238">M</text>
+              <text class="graph-label" x="70" y="180">main</text>
+              <text class="graph-label graph-label--feature" x="345" y="105">feature/login</text>
+            </svg>
+          </div>
+        </div>
+      </section>
+
+      <section class="demo-section" aria-labelledby="pull-request-title">
+        <div class="roster__head">
+          <h2 class="roster__title" id="pull-request-title">A pull request is a review</h2>
+          <p class="roster__count">03 / 03</p>
+        </div>
+        <div class="pr-flow" aria-label="Pull request flow from a feature branch to review and then merge into main">
+          <div class="pr-step">
+            <span class="pr-step__icon" aria-hidden="true">&#9679;</span>
+            <span class="pr-step__number">01</span>
+            <h3>Push branch</h3>
+            <p><code>git push</code> publishes your branch to GitHub.</p>
+          </div>
+          <span class="pr-arrow" aria-hidden="true">&rarr;</span>
+          <div class="pr-step pr-step--focus">
+            <span class="pr-step__icon" aria-hidden="true">&#8596;</span>
+            <span class="pr-step__number">02</span>
+            <h3>Open PR</h3>
+            <p>Ask teammates to review the proposed change.</p>
+          </div>
+          <span class="pr-arrow" aria-hidden="true">&rarr;</span>
+          <div class="pr-step">
+            <span class="pr-step__icon" aria-hidden="true">&#10003;</span>
+            <span class="pr-step__number">03</span>
+            <h3>Merge</h3>
+            <p>After approval, GitHub joins the branch into <code>main</code>.</p>
+          </div>
+        </div>
+      </section>
+
+      <div class="demo-next">
+        <span class="prompt">$</span> git status <span class="cursor" aria-hidden="true"></span>
+      </div>
+      <a class="back-link" href="index.html">&larr; Back to Workshop</a>
+    </main>
+
+    <footer class="footer">
+      <p>CodeX — technical committee</p>
+      <p>GitHub Workshop</p>
+    </footer>
+
+  </div>
+
+</body>
+</html>

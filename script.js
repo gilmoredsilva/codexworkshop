@@ -57,13 +57,18 @@ function randomBinary(lines) {
 }
 
 /* Hide the loader and fade the site in. */
-function finishLoading() {
+function finishLoading(removeImmediately) {
   window.clearInterval(rainTimer);
   loader.classList.add("is-done");
   document.body.classList.remove("is-loading");
   site.classList.add("is-visible");
 
   /* Remove the loader from the page once its fade-out has finished. */
+  if (removeImmediately) {
+    loader.remove();
+    return;
+  }
+
   window.setTimeout(function () {
     if (loader.parentNode) {
       loader.parentNode.removeChild(loader);
@@ -72,6 +77,25 @@ function finishLoading() {
 }
 
 function startLoading() {
+  var loaderWasShown = false;
+
+  try {
+    loaderWasShown = window.sessionStorage.getItem("codexLoaderShown") === "true";
+  } catch (error) {
+    loaderWasShown = false;
+  }
+
+  if (loaderWasShown) {
+    finishLoading(true);
+    return;
+  }
+
+  try {
+    window.sessionStorage.setItem("codexLoaderShown", "true");
+  } catch (error) {
+    /* Private browsing can block session storage; the loader still works. */
+  }
+
   if (prefersReducedMotion) {
     /* Still screen, short wait, then straight into the site. */
     loaderStatus.textContent = "loading";
@@ -190,7 +214,7 @@ function showError() {
 /* Load the data. The path is relative, so it works both at
    username.github.io/repo-name/ and on a local server. */
 function loadStudents() {
-  fetch("students.json")
+  fetch("students.json", { cache: "no-store" })
     .then(function (response) {
       if (!response.ok) {
         throw new Error("students.json returned " + response.status);
